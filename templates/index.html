@@ -4,12 +4,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+	<link rel="icon" type="icon" href="{{ url_for('static', filename='images/icon.svg') }}">
 	<title>Quote Generator</title>
 </head>
 <body>
 	<h1>Random Quote</h1>
 	<p id="quote">{{ quote }}</p>
 	<button id="newQuote">Get another quote</button>
+	<ul>
+		{% for quote in quotes %}
+			<li>{{ quote }}</li>
+		{% endfor %}
+	</ul>
 
 	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>

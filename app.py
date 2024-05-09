@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired, Email, EqualTo
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'gabriel'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:gabriel@localhost/hbnb_dev_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mariadb://root:gabriel@localhost/hbnb_dev_db'
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -38,6 +38,12 @@ def home():
     response = requests.get('https://zenquotes.io/api/random')
     quote = response.json()[0]['q']
     return render_template('index.html', quote=quote)
+
+
+@app.route('/')
+def index():
+    quotes = ["Quote 1", "Quote 2", "Quote 3"]
+    return render_template('index.html',quotes=quotes)
 
 
 @app.route('/register', methods=['GET', 'POST'])
